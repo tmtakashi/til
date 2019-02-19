@@ -53,7 +53,3 @@ Anchorと物体のIoUが0.3以下 => 物体が存在しない(Negative anchor)
 1. Region Proposalの座標を整数値に丸め込み、赤い外接矩形を得る。
 2. 得たいfeature mapのサイズと同じビン数で分割
 3. 元のfeature map内のピクセルを3x3のビンのいずれかに割り当て、maxやaverageを取る。
-
-実際には丸め誤差が生じるのでRol Alignを用いて解決する。
-
-#### Rol Align

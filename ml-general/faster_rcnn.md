@@ -1,6 +1,10 @@
 # Faster R-CNNまとめ
 http://nonbiri-tereka.hatenablog.com/entry/2018/03/07/075835
+
 https://qiita.com/arutema47/items/8ff629a1516f7fd485f9
+
+https://qiita.com/yu4u/items/5cbe9db166a5d72f9eb8
+
 ## 全体構成
 1. Conv Layerで特徴マップを得る
 2. Region Proposal Network(RPN)で領域(Region of Interest, RoI)を抽出する

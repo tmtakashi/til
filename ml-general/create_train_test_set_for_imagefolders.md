@@ -1,6 +1,6 @@
 # クラスごとにフォルダ分けされたデータをtrain, testに分ける
 
-'''python
+```python
 
 from pathlib import Path
 import shutil
@@ -35,5 +35,4 @@ for class in class_list:
     for img in imgs_path[int(len(imgs_path)*test_size):]:
         # 訓練画像をコピー
         shutil.copy(str(img), str(train_set.resolve()))
-
-'''
+```

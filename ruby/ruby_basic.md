@@ -46,3 +46,12 @@ puts 'I'm ' + age + ' years old.'
 >>> TypeError (String can't be coerced into Integer)
 ```
 のようなトラブルを避けるために、文字列に変数を含めるときは基本的に変数展開を使う。
+
+## 条件式
+```ruby
+score = 92
+if score > 80
+  puts 'High score!'
+end
+```
+

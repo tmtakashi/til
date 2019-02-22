@@ -55,3 +55,23 @@ if score > 80
 end
 ```
 
+## 破壊的メソッド
+```ruby
+name = "john"
+puts name.upcase
+>>> JOHN
+puts name
+>>> john
+puts name.upcase!
+>>> JOHN
+puts name
+>>> JOHN
+```
+
+## 真偽値
+```ruby
+puts name.empty?
+>>> false
+puts name.include?("J")
+>>> true
+```

@@ -93,3 +93,15 @@ puts scores.values
 puts scores.has_key?(:john)
 >>> true
 ```
+
+## 文字列 <=> 数値
+```ruby
+x = 50
+y = "3"
+
+puts x + y.to_i
+>>> 53
+puts x + y.to_f
+>>> 53.0
+puts x.to_s + y
+>>> "503"

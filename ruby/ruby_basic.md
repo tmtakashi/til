@@ -75,3 +75,21 @@ puts name.empty?
 puts name.include?("J")
 >>> true
 ```
+
+## ハッシュ
+```ruby
+scores = {john: 100, bob: 200}
+puts scores[:john]
+>>> 100
+scores[:bob] = 600
+puts scores
+>>> {:john => 100, :bob => 200}
+puts scores.size
+>>> 2
+puts scores.keys
+>>> [:john, :bob]
+puts scores.values
+>>> [100, 200]
+puts scores.has_key?(:john)
+>>> true
+```

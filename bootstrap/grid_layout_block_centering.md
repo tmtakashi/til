@@ -1,5 +1,7 @@
 # Grid layout使用時にdiv.row内のブロックを中央寄せにする
 
+https://shared-blog.kddi-web.com/bootstrap4/grid.html
+
 `div.row`に`.justify-content-center`を追加する。
 
 ```html

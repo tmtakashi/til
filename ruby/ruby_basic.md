@@ -106,3 +106,34 @@ true
 53.0
 >>> puts x.to_s + y
 "503"
+```
+
+## クラス
+
+```ruby
+class User
+    def name=(name) # セッター
+        @name = name
+    end
+    def name # ゲッター
+        @name
+    end
+end
+```
+```ruby
+class User
+    # セッターとゲッターを同時に定義
+    attr_accessor :name, :address, :email
+end
+```
+```ruby
+# メソッドからメソッドを使う
+class User
+    # セッターとゲッターを同時に定義
+    attr_accessor :name, :address, :email
+
+    def profile
+        "#{name}(#{address})"
+    end
+end
+```

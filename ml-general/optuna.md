@@ -70,4 +70,17 @@ study = optuna.create_study()
 study.optimize(objective, n_trials=100)
 ```
 
-## 
+## 結果の確認
+```python
+>>> study.best_params
+{'activation': 'relu',
+ 'mid_units': 400.0,
+ 'num_filter_0': 80.0,
+ 'num_filter_1': 48.0,
+ 'num_filter_2': 80.0,
+ 'num_filter_3': 96.0,
+ 'num_filter_4': 96.0,
+ 'num_filter_5': 80.0,
+ 'num_layer': 6,
+ 'optimizer': 'rmsprop'}
+``` 

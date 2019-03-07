@@ -365,3 +365,136 @@ class User
     end
 end
 ```
+
+```ruby
+# クラスメソッド
+class User
+    attr_accessor :name
+
+    def initialize(name)
+        @name = name
+    end
+
+    def sayHi
+        puts "hi! i am #{self.name}"
+    end
+
+    def self.info
+        puts "User class"
+    end
+end
+
+User.info
+=> User class
+```
+
+```ruby
+# クラス変数
+class User
+    @@count = 0
+    
+    attr_accessor :name
+
+    def initialize(name)
+        @@count += 1
+        @name = name
+    end
+
+    def sayHi
+        puts "hi! i am #{self.name}"
+    end
+
+    def self.info
+        puts "User class"
+    end
+end
+
+User.info
+=> User class
+```
+
+```ruby
+# クラス変数
+class User
+    @@count = 0
+
+    attr_accessor :name
+
+    def initialize(name)
+        @@count += 1
+        @name = name
+    end
+
+    def sayHi
+        puts "hi! i am #{self.name}"
+    end
+
+    def self.info
+        puts "User class #{@@count} instances."
+    end
+end
+
+tom = User.new("tom")
+bob = User.new("tom")
+
+User.info
+=> User class 2 instances.
+```
+
+```ruby
+# 定数
+class User
+    @@count = 0
+    
+    attr_accessor :name
+    
+    VERSION = 1.1
+    def initialize(name)
+        @@count += 1
+        @name = name
+    end
+
+    def sayHi
+        puts "hi! i am #{self.name}"
+    end
+
+    def self.info
+        puts "#{VERSION}: User class #{@@count} instances."
+    end
+end
+
+tom = User.new("tom")
+bob = User.new("tom")
+
+User.info
+puts  User::VERSION
+=> 1.1: User class 2 instances.
+1.1
+```
+
+```ruby
+# 継承
+class User
+    
+    def initialize(name)
+        @name = name
+    end
+
+    def sayHi
+        puts "hi! i am #{@name}"
+    end
+
+end
+
+class AdminUser < User
+    def sayHello
+        puts "Hello from #{@name}"
+    end
+end
+
+tom = AdminUser.new("tom")
+tom.sayHi
+tom.sayHello
+=> hi! i am tom
+Hello from tom
+```

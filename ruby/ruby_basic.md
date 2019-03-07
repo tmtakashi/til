@@ -498,3 +498,108 @@ tom.sayHello
 => hi! i am tom
 Hello from tom
 ```
+
+```ruby
+# アクセス権
+class User
+
+    private
+      def sayPrivate
+          puts "hi! i am #{@name}"
+      end
+
+end
+
+User.new.sayPrivate
+=> ruby_practice.rb:20:in `<main>': private method `sayPrivate' called for #<User:0x007fee07990e60 @name="tom"> (NoMethodError)
+
+class User
+    
+    def sayHi
+        puts "hi!"
+        sayPrivate
+    end
+
+    private
+      def sayPrivate
+          puts "hi!"
+      end
+
+end
+
+class AdminUser < User
+    def sayHello
+        puts "Hello from #{@name}"
+    end
+end
+
+User.new.sayHi
+=> hi!
+hi!
+```
+
+## モジュール
+```ruby
+module Movie
+
+    VERSION = 1.1
+
+    def self.encode
+        puts "encoding..."
+    end
+
+    def self.export
+        puts "exporting..."
+    end
+end
+
+Movie.encode
+Movie.export
+
+puts Movie::VERSION
+=> encoding...
+exporting...
+1.1
+```
+
+## ミックスイン
+```ruby
+module Debug
+
+    def info
+        puts "#{self.class} debug info ..."
+    end
+
+end
+
+class Player
+    include Debug
+end
+
+class Monster
+    include Debug
+end
+
+Player.new.info
+Monster.new.info
+```
+
+## 例外
+```ruby
+x = gets.to_i
+
+begin
+    p 100 / x
+rescue => ex
+    p ex.message
+    p ex.class
+    puts "stopped"
+ensure
+    puts "--END--"
+end
+=> 0
+"divided by 0"
+ZeroDivisionError
+stopped
+--END--
+```

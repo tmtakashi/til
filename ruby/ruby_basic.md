@@ -212,6 +212,130 @@ id:00355, rate:      3.28
 score = gets # 文字列を受け取る
 ```
 
+## 繰り返し
+
+- while
+
+```ruby
+i = 0
+
+while i < 10 do
+    puts "hello"
+    i += 1
+end
+```
+
+- times
+
+```ruby
+10.times do |i|
+  puts "#{i}: hello"
+end
+```
+
+```ruby
+10.times { |i| puts "#{i}: hello" }
+```
+
+- for
+
+```ruby
+for i in 15..20
+    puts i
+end
+=> 15
+16
+17
+18
+19
+20
+
+for color in ["red", "blue"]
+    puts color
+end
+=> red
+blue
+
+for name, score in {taguchi:200, fkoji:400} do
+    puts "#{name}: #{score}"
+end
+=> taguchi: 200
+fkoji: 400
+```
+
+- each
+```ruby
+(15..20).each do |i|
+    p i
+end
+=> 15
+16
+17
+18
+19
+20
+
+{taguch: 200, fkoji:400}.each do |name, score|
+    puts "#{name}: #{score}"
+end
+=> taguch: 200
+fkoji: 400
+```
+
+- loop
+```ruby
+i = 0
+loop do
+    p i
+    i += 1
+end
+```
+
+- break, next
+```ruby
+10.times do |i|
+    if i == 7
+        break
+    end
+    puts i 
+end
+=> 0
+1
+2
+3
+4
+5
+6
+
+10.times do |i|
+    if i == 7
+        next
+    end
+    puts i 
+end
+=> 0
+1
+2
+3
+4
+5
+6
+8
+9
+```
+
+## メソッド
+```ruby
+def sayHi(name = 'tom')
+    puts "hi! #{name}"
+end
+
+sayHi("Takashi")
+sayHi
+=> hi! Takashi
+hi! tom
+```
+
 ## クラス
 
 ```ruby

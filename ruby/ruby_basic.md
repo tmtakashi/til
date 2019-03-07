@@ -1,111 +1,215 @@
 # Ruby基礎
 ## "Hello World"
 ```ruby
->>> puts 'hello world!'
-hello world
+puts 'hello world!'
+=> hello world
 ```
 ## 数値
 ```ruby
->>> puts 22
-22
->>> puts 2 + 9
-11
->>> puts '2 + 9'
-2 + 9
+puts 22
+=> 22
+puts 2 + 9
+=> 11
+puts '2 + 9'
+=> 2 + 9
 ```
 ## 文字列の連結
 ```ruby
->>> puts 'hello' + 'world'
-'helloworld'
->>> puts '39' + '19'
-3919
+puts 'hello' + 'world'
+=> 'helloworld'
+puts '39' + '19'
+=> 3919
 ```
 
 ## 変数
 ```ruby
->>> name = 'hoge'
->>> puts name
-home
+name = 'hoge'
+puts name
+=> home
 ```
 ## 変数展開
 ```ruby
->>> name = 'John'
->>> puts "My name is #{name}."
-My name is John.
+name = 'John'
+puts "My name is #{name}."
+=> My name is John.
 ```
 `puts`の後の囲いはダブルクオーテーション`""`である必要がある。シングルクオテーション`''`だと
 ```ruby
->>> name = 'John'
->>> puts 'My name is #{name}.'
-My name is #{name}.
+name = 'John'
+puts 'My name is #{name}.'
+=> My name is #{name}.
 ```
 になってしまう。
 ```ruby
->>> age = 22
->>> puts 'I'm ' + age + ' years old.'
-TypeError (String can't be coerced into Integer)
+age = 22
+puts 'I'm ' + age + ' years old.'
+=> TypeError (String can't be coerced into Integer)
 ```
 のようなトラブルを避けるために、文字列に変数を含めるときは基本的に変数展開を使う。
 
 ## 条件式
+
+- if文
+
 ```ruby
->>> score = 92
->>> if score > 80
->>>   puts 'High score!'
->>> end
-High score!
+score = 92
+if score > 80
+  puts 'High score!'
+end
+=> High score!
+```
+
+条件が単純な場合`puts "great! if score > 80`のようにもかける
+
+- case文
+
+```ruby
+signal = gets.chomp # chompで改行コードを取り除く
+
+case signal
+when "red"
+    puts "stop!"
+when "green", "blue"
+    puts "go!"
+when "yellow"
+    puts "caution!"
+else
+    puts 
+end
 ```
 
 ## 破壊的メソッド
 ```ruby
->>> name = "john"
->>> puts name.upcase
-JOHN
->>> puts name
-john
->>> puts name.upcase!
-JOHN
->>> puts name
-JOHN
+name = "john"
+puts name.upcase
+=> JOHN
+puts name
+=> john
+puts name.upcase!
+=> JOHN
+puts name
+=> JOHN
 ```
 
 ## 真偽値
 ```ruby
->>> puts name.empty?
-false
->>> puts name.include?("J")
-true
+puts name.empty?
+=> false
+puts name.include?("J")
+=> true
 ```
 
 ## ハッシュ
 ```ruby
->>> scores = {john: 100, bob: 200}
->>> puts scores[:john]
-100
->>> scores[:bob] = 600
->>> puts scores
-{:john => 100, :bob => 200}
->>> puts scores.size
-2
->>> puts scores.keys
-[:john, :bob]
->>> puts scores.values
-[100, 200]
->>> puts scores.has_key?(:john)
-true
+scores = {john: 100, bob: 200}
+puts scores[:john]
+=> 100
+scores[:bob] = 600
+puts scores
+=> {:john => 100, :bob => 200}
+puts scores.size
+=> 2
+puts scores.keys
+=> [:john, :bob]
+puts scores.values
+=> [100, 200]
+puts scores.has_key?(:john)
+=> true
 ```
 
 ## 文字列 <=> 数値
 ```ruby
->>> x = 50
->>> y = "3"
+x = 50
+y = "3"
 
->>> puts x + y.to_i
-53
->>> puts x + y.to_f
-53.0
->>> puts x.to_s + y
-"503"
+puts x + y.to_i
+=> 53
+puts x + y.to_f
+=> 53.0
+puts x.to_s + y
+=> "503"
+```
+
+## ハッシュ<=>配列
+```ruby
+scores = {taguchi: 200, fkoji: 400}
+puts scores.to_a
+=> [[:taguchi, 200], [:fkoji, 400]]
+puts socres.to_a.to_h
+=> {:taguchi=>200, :fkoji=>400}
+```
+## %記法
+```ruby
+puts "name: %s" % "taguchi"
+=> "name: taguchi"
+puts "name: %10s" % "taguchi"
+=> name:    taguchi
+puts 
+```
+
+エスケープシーケンスをバックスラッシュなしで記述できる
+
+```ruby
+puts %Q(he"llo) # ダブルクォーテーション
+=> he"llo
+puts %(he"llo) # 「Q」は省略可能
+=> he"llo
+puts #q(he'llo) # シングルクォーテーション
+=> he`llo
+```
+文字列のみの配列を簡単にかける
+
+```ruby
+blue = "blue"
+puts %W(red #{blue}) # 式展開有り
+red
+blue
+
+puts %w(red #{blue})
+red
+#{blue}
+```
+
+## 書式付の値の埋め込み
+
+文字列
+
+```ruby
+puts "name: %s" % "taguchi"
+=> "name: taguchi"
+puts "name: %10s" % "taguchi"
+=> "name:    taguchi"
+puts "name: %-10s" % "taguchi"
+=> "name: taguchi     "
+```
+
+数値
+
+```ruby
+puts "id:%05d, rate:%10.2f" % [355, 3.284] #10.2f: 全体が10桁、小数点以下が2桁
+=> id:00355, rate:      3.28
+````
+
+`printf`
+
+```ruby
+printf("name: %10s\n", "taguchi")
+printf("id:%05d, rate:%10.2f", 355, 3.284)
+=> name:    taguchi
+id:00355, rate:      3.28
+```
+
+`sprintf`: printせずに文字列を返す
+```ruby
+p sprintf("name: %10s\n", "taguchi")
+p sprintf("id:%05d, rate:%10.2f", 355, 3.284)
+=> name:    taguchi
+id:00355, rate:      3.28
+```
+
+## 標準入力
+```ruby
+score = gets # 文字列を受け取る
 ```
 
 ## クラス

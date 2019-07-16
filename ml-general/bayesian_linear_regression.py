@@ -79,11 +79,12 @@ def fit_predict(X, Y, pred_ndim, m, lamb, num_data, noise_variance):
     sum2 = np.c_[np.zeros(pred_ndim+1)]
 
     #create input_vecs
-    for j in range(num_data):
-        for i in range(pred_ndim+1):
-            input_vecs[j][i] = X[j]**i
-        sum1 = sum1 + np.dot(input_vecs[[j]].T, input_vecs[[j]])
-        sum2 = sum2 + Y[j] * input_vecs[[j]].T
+    for i in range(num_data):
+        for j in range(pred_ndim+1):
+            input_vecs[i][j] = X[i]**j
+        #use each input vector to calculate sum1 and sum2
+        sum1 = sum1 + np.dot(input_vecs[[i]].T, input_vecs[[i]])
+        sum2 = sum2 + Y[i] * input_vecs[[i]].T
     #new precision matrix
     lamb_hat = noise_variance * sum1 + lamb
     #new expectation vector
@@ -94,15 +95,15 @@ def fit_predict(X, Y, pred_ndim, m, lamb, num_data, noise_variance):
 
     pred_x = np.linspace(xmin_pred, xmax_pred, 100)
     pred_y = np.zeros(100)
-    for j in range(100):
-        for i in range(pred_ndim+1):
-            pred_y[j] = pred_y[j] + m_hat[i] * pred_x[j]**i
+    for i in range(100):
+        for j in range(pred_ndim+1):
+            pred_y[i] = pred_y[i] + m_hat[j] * pred_x[i]**j
 
     #plot predicted function and training data
     plt.scatter(X, Y, label="Training data")
     plt.plot(pred_x, pred_y, c='red', label="Predicted y")
     plt.legend()
-    plt.title("Number of data=" + str(num_data) + " variance of noise" + str(noise_variance))
+    plt.title("Number of data=" + str(num_data) + " variance of noise=" + str(noise_variance))
     plt.xlabel("x")
     plt.ylabel("y")
     plt.xlim(xmin_pred, xmax_pred)
